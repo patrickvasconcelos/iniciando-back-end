@@ -13,13 +13,13 @@ describe('CreateUser', () => {
       fakeHashProvider,
     );
 
-    const users = await createUsers.execute({
+    const user = await createUsers.execute({
       name: 'John Doe',
       email: 'johndoe@example.com',
       password: '123456',
     });
 
-    expect(users).toHaveProperty('id');
+    expect(user).toHaveProperty('id');
   });
 
   it('should be able to create a new user with email already used', async () => {

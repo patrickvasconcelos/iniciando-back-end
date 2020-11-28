@@ -11,8 +11,8 @@ interface Request {
 }
 class UpdateUserAvatarService {
   constructor(private usersRepository: IUsersRepository) { }
-  public async execute({ user_id, avatarFilename }: Request): Promise<User> {
 
+  public async execute({ user_id, avatarFilename }: Request): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {

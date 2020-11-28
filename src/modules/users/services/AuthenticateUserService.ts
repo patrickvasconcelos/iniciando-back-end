@@ -18,9 +18,9 @@ interface IResponse {
 
 class AuthenticateUserService {
   constructor(private usersRepository: IUsersRepository) { }
-  public async execute({ email, password }: IRequest): Promise<IResponse> {
 
-    const user = await this.usersRepository.findByEmail(email)
+  public async execute({ email, password }: IRequest): Promise<IResponse> {
+    const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
       throw new AppError('Incorrect email/password combinaton.', 401);

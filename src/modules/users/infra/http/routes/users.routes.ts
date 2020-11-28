@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import multer from 'multer';
-import ensureAutheticated from '../middlewares/ensureAuthenticated';
 import CreateUserService from '@modules/users/services/CreateUserService';
 import uploadConfig from '@config/upload';
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
+import ensureAutheticated from '../middlewares/ensureAuthenticated';
 import UsersRepository from '../../typeorm/repositories/UsersRepository';
 
 const usersRouter = Router();

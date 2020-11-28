@@ -13,7 +13,7 @@ export default class UserAvatarController {
 
     // delete user.password;
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...userWithoutPassword } = user;
-    return response.json(userWithoutPassword);
+    const { password: _, ...userWithoutPassword } = user;
+    return response.json({ user: userWithoutPassword });
   }
 }

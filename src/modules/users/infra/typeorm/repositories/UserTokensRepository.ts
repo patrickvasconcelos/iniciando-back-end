@@ -10,7 +10,7 @@ export default class UserTokensRepository implements IUserTokensRepository {
   }
 
   public async findByToken(token: string): Promise<UserToken | undefined> {
-    const userToken = this.ormRepository.findOne({
+    const userToken = await this.ormRepository.findOne({
       where: { token },
     });
 

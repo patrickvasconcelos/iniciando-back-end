@@ -3,7 +3,6 @@ import AppError from '@shared/errors/AppError';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 import User from '../infra/typeorm/entities/User';
-import passwordRouter from '../infra/http/routes/password.routes';
 
 interface IRequest {
   user_id: string;
@@ -21,7 +20,7 @@ class UpdateProfileService {
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
-  ) { }
+  ) {}
 
   public async execute({
     user_id,

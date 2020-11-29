@@ -9,6 +9,7 @@ let fakeUsersRepository: FakeUsersRepository;
 let fakeMailProvider: FakeMailProvider;
 let fakeUserTokensRepository: FakeUserTokensRepository;
 let sendForgotPasswordEmail: SendForgotPasswordEmailService;
+
 describe('SendForgotPasswordEmail', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
@@ -20,6 +21,7 @@ describe('SendForgotPasswordEmail', () => {
       fakeUserTokensRepository,
     );
   });
+
   it('should be able to sand a link by email', async () => {
     const sendMail = jest.spyOn(fakeMailProvider, 'sendMail');
 

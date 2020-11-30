@@ -1,6 +1,7 @@
 import CreateUserService from '@modules/users/services/CreateUserService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -14,11 +15,6 @@ export default class UsersController {
       password,
     });
 
-    // delete user.password;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: _, ...userWithoutPassword } = user;
-    return response.json(userWithoutPassword);
-
-    return response.json({ user: userWithoutPassword });
+    return response.json({ user: classToClass(user) });
   }
 }

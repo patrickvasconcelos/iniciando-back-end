@@ -1,6 +1,7 @@
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 export default class UserAvatarController {
   public async update(request: Request, response: Response): Promise<Response> {
@@ -11,9 +12,6 @@ export default class UserAvatarController {
       avatarFilename: request.file.filename,
     });
 
-    // delete user.password;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password: _, ...userWithoutPassword } = user;
-    return response.json({ user: userWithoutPassword });
+    return response.json({ user: classToClass(user) });
   }
 }

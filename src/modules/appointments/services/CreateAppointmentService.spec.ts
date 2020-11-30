@@ -22,7 +22,7 @@ describe('CreateAppointment', () => {
 
     const appointment = await createAppointment.execute({
       date: new Date(2020, 10, 28, 13),
-      user_id: '123123',
+      user_id: 'user_id',
       provider_id: '123123',
     });
     expect(appointment).toHaveProperty('id');
@@ -34,15 +34,15 @@ describe('CreateAppointment', () => {
 
     await createAppointment.execute({
       date: appointmentDate,
-      user_id: '123123',
-      provider_id: '123123',
+      user_id: 'user_id',
+      provider_id: 'provider_id',
     });
 
     await expect(
       createAppointment.execute({
         date: appointmentDate,
-        user_id: '123123',
-        provider_id: '123123',
+        user_id: 'user_id',
+        provider_id: 'provider_id',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
@@ -55,8 +55,22 @@ describe('CreateAppointment', () => {
     await expect(
       createAppointment.execute({
         date: new Date(2020, 10, 28, 11),
-        user_id: '123123',
-        provider_id: '123123',
+        user_id: 'user_id',
+        provider_id: 'provider_id',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create appointment with same user as provider', async () => {
+    jest.spyOn(Date, 'now').mockImplementationOnce(() => {
+      return new Date(2020, 10, 28, 12).getTime();
+    });
+
+    await expect(
+      createAppointment.execute({
+        date: new Date(2020, 10, 28, 13),
+        user_id: 'user_id',
+        provider_id: 'user_id',
       }),
     ).rejects.toBeInstanceOf(AppError);
   });

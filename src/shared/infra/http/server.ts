@@ -1,19 +1,20 @@
 import 'reflect-metadata';
-
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
-
 import routes from '@shared/infra/http/routes';
-import uploadConfig from '@config/upload';
 import '@shared/infra/typeorm';
-import AppError from '@shared/errors/AppError';
 import '@shared/container';
+import AppError from '@shared/errors/AppError';
+import { errors } from 'celebrate';
+import uploadConfig from '@config/upload';
 
 const app = express();
 
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
+
+app.use(errors());
 
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
   if (err instanceof AppError) {

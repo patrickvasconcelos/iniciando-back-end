@@ -37,9 +37,11 @@ class User {
     if (!this.avatar) return null;
     switch (uploadConfig.driver) {
       case 's3':
-        return `https://app-gobarber-patrick.s3.us-east-2.amazonaws.com/${this.avatar}`;
-      default:
+        return `https://${uploadConfig.config.aws.bucket}.s3.amazonaws.com/${this.avatar}`;
+      case 'disk':
         return `${process.env.APP_API_URL}/files/${this.avatar}`;
+      default:
+        return null;
     }
   }
 }

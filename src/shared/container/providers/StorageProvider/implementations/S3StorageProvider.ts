@@ -23,7 +23,7 @@ class S3StorageProvider implements IStorageProvider {
     }
     await this.client
       .putObject({
-        Bucket: 'app-gobarber-patrick',
+        Bucket: uploadConfig.config.aws.bucket,
         Key: file,
         ACL: 'public-read',
         Body: fileContent,
@@ -31,13 +31,15 @@ class S3StorageProvider implements IStorageProvider {
       })
       .promise();
 
+    await fs.promises.unlink(originalPath);
+
     return file;
   }
 
   public async deleteFile(file: string): Promise<void> {
     await this.client
       .deleteObject({
-        Bucket: 'app-gobarber-patrick',
+        Bucket: uploadConfig.config.aws.bucket,
         Key: file,
       })
       .promise();

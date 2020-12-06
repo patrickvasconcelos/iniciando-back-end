@@ -14,7 +14,7 @@ class ListProvidersService {
     private usersRepository: IUsersRepository,
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
-  ) { }
+  ) {}
 
   public async execute({ user_id }: IRequest): Promise<User[]> {
     const cacheKey = `providers-list:${user_id}`;

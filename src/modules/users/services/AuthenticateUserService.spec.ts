@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import AppError from '@shared/errors/AppError';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import AuthenticateUserService from './AuthenticateUserService';
 import CreateUserService from './CreateUserService';
@@ -7,17 +8,21 @@ import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
-
+let fakeCacheProvider: FakeCacheProvider;
 let createUsers: CreateUserService;
-
 let authenticateUsers: AuthenticateUserService;
 
 describe('AuthenticateUser', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeHashProvider = new FakeHashProvider();
+    fakeCacheProvider = new FakeCacheProvider();
 
-    createUsers = new CreateUserService(fakeUsersRepository, fakeHashProvider);
+    createUsers = new CreateUserService(
+      fakeUsersRepository,
+      fakeHashProvider,
+      fakeCacheProvider,
+    );
 
     authenticateUsers = new AuthenticateUserService(
       fakeUsersRepository,

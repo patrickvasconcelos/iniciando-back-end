@@ -20,7 +20,7 @@ class CreateAppointmentService {
     private notificationsRepository: INotificationsRepository,
     @inject('CacheProvider')
     private cacheProvider: ICacheProvider,
-  ) { }
+  ) {}
 
   public async execute({
     date,
@@ -63,6 +63,7 @@ class CreateAppointmentService {
       content: `Novo agendamento para o dia ${dateFormatted}`,
       recipient_id: provider_id,
     });
+
     const cacheKey = `provider-appointments:${provider_id}:${format(
       appointmentDate,
       'yyyy-M-d',

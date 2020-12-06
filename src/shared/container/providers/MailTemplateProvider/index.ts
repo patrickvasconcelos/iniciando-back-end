@@ -3,10 +3,10 @@ import HandlebarsMailTemplateProvider from './implementations/HandlebarsMailTemp
 import IMailTemplateProvider from './models/IMailTemplateProvider';
 
 const providers = {
-  handleBars: HandlebarsMailTemplateProvider,
+  handlebars: HandlebarsMailTemplateProvider,
 };
 
 container.registerSingleton<IMailTemplateProvider>(
   'MailTemplateProvider',
-  providers.handleBars,
+  providers.handlebars,
 );

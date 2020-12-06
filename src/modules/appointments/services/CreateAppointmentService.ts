@@ -69,7 +69,7 @@ class CreateAppointmentService {
       'yyyy-M-d',
     )}`;
 
-    await this.cacheProvider.invalidade(cacheKey);
+    await this.cacheProvider.invalidate(cacheKey);
 
     return appointment;
   }

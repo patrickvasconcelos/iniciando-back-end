@@ -11,13 +11,13 @@ export default class ProviderDayAvailabilityController {
       ListProviderDayAvailabilityService,
     );
 
-    const availabilty = await listProviderDayAvailability.execute({
+    const availability = await listProviderDayAvailability.execute({
       provider_id,
       day,
       month,
       year,
     });
 
-    return response.json(availabilty);
+    return response.json(availability);
   }
 }

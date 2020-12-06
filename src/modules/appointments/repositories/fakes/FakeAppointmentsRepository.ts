@@ -1,6 +1,6 @@
 import Appointment from '@modules/appointments/infra/typeorm/entities/Appointment';
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
-import ICreateAppointmentsDTO from '@modules/appointments/dtos/ICreateAppointmentsDTO';
+import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointmentDTO';
 import { v4 as uuid } from 'uuid';
 import { getDate, getMonth, getYear, isEqual } from 'date-fns';
 import IFindAllInMonthFromProviderDTO from '@modules/appointments/dtos/IFindAllInMonthFromProviderDTO';
@@ -51,7 +51,7 @@ class FakeAppointmentsRepository implements IAppointmentsRepository {
     provider_id,
     user_id,
     date,
-  }: ICreateAppointmentsDTO): Promise<Appointment> {
+  }: ICreateAppointmentDTO): Promise<Appointment> {
     const appointment = new Appointment();
     Object.assign(appointment, { id: uuid(), date, provider_id, user_id });
 

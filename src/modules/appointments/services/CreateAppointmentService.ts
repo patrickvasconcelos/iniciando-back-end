@@ -17,7 +17,7 @@ class CreateAppointmentService {
     private appointmentsRepository: IAppointmentsRepository,
     @inject('NotificationsRepository')
     private notificationsRepository: INotificationsRepository,
-  ) { }
+  ) {}
 
   public async execute({
     date,

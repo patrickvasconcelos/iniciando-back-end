@@ -24,6 +24,7 @@ class SendForgotPasswordEmailService {
 
   public async execute({ email }: IRequest): Promise<void> {
     const user = await this.usersRepository.findByEmail(email);
+
     if (!user) {
       throw new AppError('User does not exists.');
     }
@@ -42,12 +43,12 @@ class SendForgotPasswordEmailService {
         name: user.name,
         email: user.email,
       },
-      subject: '[GoBarber] Recuperação de Senha',
+      subject: '[GoBarber] Recuperação de senha',
       templateData: {
         file: forgotPasswordTemplate,
-        variable: {
+        variables: {
           name: user.name,
-          link: `${process.env.APP_WEB_URL}/reset_password?token=${token}`,
+          link: `${process.env.APP_WEB_URL}/reset-password?token=${token}`,
         },
       },
     });
